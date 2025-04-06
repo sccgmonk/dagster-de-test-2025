@@ -4,6 +4,7 @@ import dagster as dg
 kpi_fy_monthly_job_schedule = dg.ScheduleDefinition(
     name="kpi_fy_monthly_job",
     target=dg.define_asset_job(name="kpi_fy_monthly_job", selection=dg.AssetSelection.groups("plan")),
-    cron_schedule=["* * * * *"],
+    cron_schedule=["* * 3,21 * *"],
+    execution_timezone="Asia/Bangkok",
     default_status=dg.DefaultScheduleStatus.RUNNING,
 )
