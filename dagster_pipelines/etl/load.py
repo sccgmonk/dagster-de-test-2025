@@ -12,7 +12,7 @@ def load_to_duckdb(df: pd.DataFrame, table_name: str) -> None:
             
             con.sql("CREATE SCHEMA IF NOT EXISTS plan;")
             con.register('df_view', df)
-            
+            # con.execute(f"INSERT INTO  {table_name} SELECT * FROM df;")
             con.sql(f"CREATE OR REPLACE TABLE plan.plan.{table_name} AS SELECT * FROM df_view;")
             con.execute(f"INSERT INTO  plan.plan.{table_name} SELECT * FROM df;")
 
